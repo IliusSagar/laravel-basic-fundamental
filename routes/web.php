@@ -39,3 +39,19 @@ Route::get('/feed', function () {
 // Route::get('/profile', function () {
 //     return view('users.profile');
 // });
+
+
+// Route::get('/pizzas', function () {
+//     return view('pizzas',['type' => 'hawaiian', 'base' => 'cheesy crust']);
+// });
+
+Route::get('/pizzas', function () {
+
+    $pizza = [
+        'type' => 'hawaiian', 
+        'base' => 'cheesy crust',
+        'price' => 10
+    ];
+
+    return view('pizzas',$pizza );
+});
