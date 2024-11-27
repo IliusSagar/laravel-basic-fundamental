@@ -28,9 +28,10 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-
-Route::get('/', [DashboardController::class, 'index']);
-Route::get('/profile', [ProfileController::class, 'index']);
+// Protected Middleware
+Route::get('/', [DashboardController::class, 'index'])->middleware('guard');
+Route::get('/profile', [ProfileController::class, 'index'])->middleware('guard');
+// --------------------------------------
 
 Route::get('/feed', function () {
     return view('feed');
@@ -54,4 +55,24 @@ Route::get('/pizzas', function () {
     ];
 
     return view('pizzas',$pizza );
+});
+
+Route::get('/login',function(){
+    session()->put('user_id', 1);
+    return redirect('/');
+
+    // echo "<pre>";
+    // print_r(session()->all());
+
+   
+});
+
+Route::get('/logout', function(){
+    session()->forget('user_id');
+    return redirect('/');
+});
+
+Route::get('/no-access',function(){
+    echo "You're not allowed to access the page!";
+    die;
 });
