@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,14 +21,21 @@ use Illuminate\Support\Facades\Route;
 //     return "<h1>Hello World!</h1>";
 // });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+
+Route::get('/', [DashboardController::class, 'index']);
+Route::get('/profile', [ProfileController::class, 'index']);
 
 Route::get('/feed', function () {
     return view('feed');
 });
 
-Route::get('/profile', function () {
-    return view('users.profile');
-});
+// Route::get('/profile', function () {
+//     return view('users.profile');
+// });
